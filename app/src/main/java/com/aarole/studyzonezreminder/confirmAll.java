@@ -1,5 +1,7 @@
 package com.aarole.studyzonezreminder;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class confirmAll extends AppCompatActivity {
     public static String time = startTimePicker.startHour + ":" + startTimePicker.startMinute;
@@ -46,6 +49,17 @@ public class confirmAll extends AppCompatActivity {
                 messageArray.add(msg);
                 endDateArray.add(day);
                 startTimeArray.add(time);
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, startTimePicker.startHour);
+                calendar.set(Calendar.MINUTE, startTimePicker.startMinute);
+                calendar.set(Calendar.SECOND, 00);
+
+                Intent intent1 = new Intent(getApplicationContext(), Notification_receiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManager =(AlarmManager) getSystemService(ALARM_SERVICE);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
 
                 Intent intent = new Intent(confirmAll.this, MainActivity.class);
                 startActivity(intent);
