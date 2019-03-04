@@ -14,8 +14,22 @@
     <TextView
         android:id="@+id/remList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="550dp"
         android:layout_marginTop="60dp"
         android:textSize="20dp"/>
+    <Button
+        android:id="@+id/addBtn"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="630dp"
+        android:layout_marginLeft="25dp"
+        android:text="Add Reminder"/>
+    <Button
+        android:id="@+id/removeBtn"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="630dp"
+        android:layout_marginLeft="210dp"
+        android:text="Remove Reminder"/>
 
 </RelativeLayout>

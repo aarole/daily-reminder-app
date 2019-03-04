@@ -7,7 +7,7 @@
     tools:context=".confirmAll">
 
     <Button
-        android:id="@+id/exitBtn"
+        android:id="@+id/confBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="550dp"
