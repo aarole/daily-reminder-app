@@ -27,12 +27,12 @@ public class Notification_receiver extends BroadcastReceiver {
                 notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
-        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        //Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
                 context).setSmallIcon(android.R.drawable.arrow_up_float)
                 .setContentTitle("Your Study Time Has Begun")
-                .setContentText(confirmAll.msg).setSound(alarmSound)
+                .setContentText(confirmAll.msg)//.setSound(alarmSound)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
