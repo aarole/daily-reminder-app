@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public class Notification_receiver extends BroadcastReceiver {
 
-    private static int MID;
+    private static int id = 0;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -36,7 +36,7 @@ public class Notification_receiver extends BroadcastReceiver {
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
-        Objects.requireNonNull(notificationManager).notify(MID, builder.build());
-        MID++;
+        Objects.requireNonNull(notificationManager).notify(id, builder.build());
+        id++;
     }
 }

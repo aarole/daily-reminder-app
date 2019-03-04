@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class confirmAll extends AppCompatActivity {
     public static String time = startTimePicker.startHour + ":" + startTimePicker.startMinute;
@@ -50,15 +52,21 @@ public class confirmAll extends AppCompatActivity {
                 endDateArray.add(day);
                 startTimeArray.add(time);
 
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY, startTimePicker.startHour);
-                calendar.set(Calendar.MINUTE, startTimePicker.startMinute);
-                calendar.set(Calendar.SECOND, 0);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = new Date();
 
-                Intent intent1 = new Intent(confirmAll.this, Notification_receiver.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(confirmAll.this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-                AlarmManager am = (AlarmManager) confirmAll.this.getSystemService(confirmAll.this.ALARM_SERVICE);
-                am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+                do {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(Calendar.HOUR_OF_DAY, startTimePicker.startHour);
+                    calendar.set(Calendar.MINUTE, startTimePicker.startMinute);
+                    calendar.set(Calendar.SECOND, 0);
+
+                    Intent intent1 = new Intent(confirmAll.this, Notification_receiver.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(confirmAll.this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+                    AlarmManager am = (AlarmManager) confirmAll.this.getSystemService(confirmAll.this.ALARM_SERVICE);
+                    am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+                }
+                while(!dateFormat.format(date).equals(day));
 
                 Intent intent = new Intent(confirmAll.this, MainActivity.class);
                 startActivity(intent);
